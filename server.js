@@ -4,6 +4,9 @@ import dotenv from 'dotenv'
 import connectDB from './database/db.js';
 import { getDocument ,updateDocument } from './controller/document.controller.js';
 import { createServer } from 'http';
+import cors from 'cors'
+
+
 
 
 
@@ -18,10 +21,10 @@ const URL = process.env.DB_URL;
 connectDB(URL);
 
 
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static('client/build'));
-}
+app.use(cors());
 
+
+// 
 
 const httpServer = createServer(app);
 httpServer.listen(PORT);
